@@ -28,7 +28,7 @@ void XOLEDDisplayClass::setLine(int offset, char* text, bool transient, bool bli
   _lines[offset].setText(text, transient, blink);   
 }
 
-void XOLEDDisplayClass::display(void) {
+void XOLEDDisplayClass::refresh(void) {
   Serial.println("DISPLAY");
   _display->clear();
   _display->setFont(ArialMT_Plain_16);

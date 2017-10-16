@@ -23,7 +23,7 @@ public:
   void setLeftIcon2(char* icon, bool blink);
   void setRightIcon1(char* icon, bool blink);
   void setRightIcon2(char* icon, bool blink);
-  void display(); 
+  void refresh(); 
   
   static const byte NB_LINES = 4; 
   static const byte MAX_TITLE_LENGTH = 10; 

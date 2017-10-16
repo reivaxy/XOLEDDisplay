@@ -26,6 +26,6 @@ void loop() {
     oledDisplay->setLine(2, "Line 2 transient", true, false);
     start = millis();
   }
-  oledDisplay->display();
+  oledDisplay->refresh();
   delay(50);  
 }
