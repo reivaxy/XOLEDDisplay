@@ -29,15 +29,12 @@ void XOLEDDisplayClass::setLine(int offset, char* text, bool transient, bool bli
 }
 
 void XOLEDDisplayClass::refresh(void) {
-  Serial.println("DISPLAY");
   _display->clear();
   _display->setFont(ArialMT_Plain_16);
   _display->setTextAlignment(TEXT_ALIGN_CENTER);
   _display->drawString(64, 0, _title);  
-
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].refresh(_display);
   }
-
   _display->display();
 }
