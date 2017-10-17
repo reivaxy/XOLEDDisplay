@@ -20,11 +20,13 @@ public:
   XOLEDLineClass();
   void setText(char* text);
   void setTransientText(char* text);
+  void setBlinkingText(char* text);
   void setText(char* text, bool transient, bool blink);
   
   void setBlink(bool flag);
   void setFont(char* font);
   void setBlinkPeriod(unsigned int period);
+  void setTransientDuration(unsigned int duration);
   void setPosition(int* pos);
 
   bool isEmpty(void);

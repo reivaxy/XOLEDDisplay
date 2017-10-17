@@ -22,10 +22,28 @@ void XOLEDDisplayClass::setTitle(char* title) {
 }  
 
 void XOLEDDisplayClass::setLine(int offset, char* text) {
+  if (offset >= NB_LINES) return;
   _lines[offset].setText(text);   
 }
+void XOLEDDisplayClass::setTransientLine(int offset, char* text) {
+  if (offset >= NB_LINES) return;
+  _lines[offset].setTransientText(text);   
+}
+void XOLEDDisplayClass::setBlinkingLine(int offset, char* text) {
+  if (offset >= NB_LINES) return;
+  _lines[offset].setBlinkingText(text);   
+}
 void XOLEDDisplayClass::setLine(int offset, char* text, bool transient, bool blink) {
+  if (offset >= NB_LINES) return;
   _lines[offset].setText(text, transient, blink);   
+}
+void XOLEDDisplayClass::setBlinkPeriod(int offset, unsigned int period) {
+  if (offset >= NB_LINES) return;
+  _lines[offset].setBlinkPeriod(period);   
+}
+void XOLEDDisplayClass::setTransientDuration(int offset, unsigned int duration) {
+  if (offset >= NB_LINES) return;
+  _lines[offset].setTransientDuration(duration);   
 }
 
 void XOLEDDisplayClass::refresh(void) {

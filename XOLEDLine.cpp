@@ -21,6 +21,15 @@ void XOLEDLineClass::setPosition(int* pos) {
 void XOLEDLineClass::setTransientText(char* text) {
   setText(text, true, false);
 }
+void XOLEDLineClass::setBlinkingText(char* text) {
+  setText(text, false, true);
+}
+void XOLEDLineClass::setBlinkPeriod(unsigned int period) {
+  _blinkPeriod = period;
+}
+void XOLEDLineClass::setTransientDuration(unsigned int duration) {
+  _transientDuration = duration;
+}
 
 void XOLEDLineClass::setText(char* text, bool transient, bool blink) {
   char **targetText = &_text;
@@ -42,8 +51,10 @@ void XOLEDLineClass::setText(char* text, bool transient, bool blink) {
     *targetText = NULL;
   }
   int len = min(strlen(text), MAX_LINE_LENGTH);
-  *targetText = (char*)malloc(len);
-  strcpy(*targetText, text);
+  Serial.println(len);
+  *targetText = (char*)malloc(len + 1) ;
+  strncpy(*targetText, text, len);
+  (*targetText)[len] = 0;
 }
 
 void XOLEDLineClass::refresh(SSD1306* display) {
@@ -68,10 +79,10 @@ void XOLEDLineClass::refresh(SSD1306* display) {
     }
   }
   if (_transientText != NULL) {
-      display->drawString(_posX, _posY, _transientText);
+      display->drawString(_posX, _posY, String(_transientText));
     } else {
     if (_text != NULL) {
-      display->drawString(_posX, _posY, _text);
+      display->drawString(_posX, _posY, String(_text));
     }
   }
 }

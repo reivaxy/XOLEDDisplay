@@ -17,8 +17,11 @@ public:
   void setLine(int offset, char *text);
   void setLine(int offset, char *text, bool transient, bool blink);
   void setBlinkingLine(int offset, char *text);
+  void setTransientLine(int offset, char *text);
   void unBlinkLine(int offset);
-
+  void setBlinkPeriod(int offset, unsigned int period); 
+  void setTransientDuration(int offset, unsigned int duration); 
+  
   void setLeftIcon1(char* icon, bool blink);
   void setLeftIcon2(char* icon, bool blink);
   void setRightIcon1(char* icon, bool blink);
