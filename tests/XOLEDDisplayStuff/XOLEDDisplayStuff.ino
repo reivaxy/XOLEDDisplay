@@ -16,7 +16,13 @@ void setup() {
   oledDisplay = new XOLEDDisplayClass(&display);
   oledDisplay->setTitle("BIG TITLE");
 
-  oledDisplay->setLine(0, "Line 0 steady.");
+  oledDisplay->setLeftIcon1('M');
+  oledDisplay->setLeftIcon2('M');
+  oledDisplay->setRightIcon1('M');
+  oledDisplay->setRightIcon2('M');
+  
+  
+  oledDisplay->setLine(0, "Line 0 steady !!! \"\"");
   oledDisplay->setBlinkingLine(1, "Line 1 blinking");
   oledDisplay->setLine(2, "Line 2 permanent");
   oledDisplay->setBlinkingLine(3, "Line 3 blinking fast");
@@ -30,7 +36,6 @@ void loop() {
   unsigned int now = millis();
   // Every 8 seconds, display transient messages on lines 2 and 3
   if (now > chrono + 8000) {
-    Serial.println("Transient lines 2 and 3");
     oledDisplay->setTransientLine(2, "Line 2 transient");
     oledDisplay->setTransientLine(3, "Truncated blinking transient line");
     chrono = now;

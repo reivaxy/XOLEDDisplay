@@ -13,11 +13,6 @@ void XOLEDLineClass::setText(char* text) {
   setText(text, false, false);
 }
 
-void XOLEDLineClass::setPosition(int* pos) {
-  _posX = pos[0];
-  _posY = pos[1];
-}
-
 /**
  * This call preserves the blinking property of the line
  *
@@ -33,6 +28,26 @@ void XOLEDLineClass::setBlinkPeriod(unsigned int period) {
 }
 void XOLEDLineClass::setTransientDuration(unsigned int duration) {
   _transientDuration = duration;
+}
+
+void XOLEDLineClass::setPosition(int* pos) {
+  _posX = pos[0];
+  _posY = pos[1];
+}
+
+void XOLEDLineClass::setIcon(char icon, bool blink) {
+  char text[2];
+  text[0] = icon;
+  text[1] = 0;
+  setText(text, false, blink);
+}
+
+void XOLEDLineClass::setIcon(char icon) {
+  setIcon(icon, false);
+}
+
+void XOLEDLineClass::setFont(const char* font) {
+  _font = font;
 }
 
 void XOLEDLineClass::setBlink(bool flag) {

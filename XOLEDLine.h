@@ -23,8 +23,11 @@ public:
   void setBlinkingText(char* text);
   void setText(char* text, bool transient, bool blink);
   
+  void setIcon(char glyph);
+  void setIcon(char glyph, bool blink);
+
   void setBlink(bool flag);
-  void setFont(char* font);
+  void setFont(const char* font);
   void setBlinkPeriod(unsigned int period);
   void setTransientDuration(unsigned int duration);
   void setPosition(int* pos);
