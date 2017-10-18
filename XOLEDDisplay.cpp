@@ -31,8 +31,24 @@ void XOLEDDisplayClass::setTransientLine(int offset, char* text) {
 }
 void XOLEDDisplayClass::setBlinkingLine(int offset, char* text) {
   if (offset >= NB_LINES) return;
-  _lines[offset].setBlinkingText(text);   
+  _lines[offset].setBlinkingText(text);
+  // We probably want all blinking lines (with same period) to be in sync
+  _syncBlinkingLines();
 }
+
+void XOLEDDisplayClass::_syncBlinkingLines() {
+  for(byte i = 0; i < NB_LINES; i++) {
+    _lines[i].syncBlink();
+  }
+}
+void XOLEDDisplayClass::blinkLine(int offset, bool flag) {
+  if (offset >= NB_LINES) return;
+  _lines[offset].setBlink(flag);
+  if (flag) {
+    _syncBlinkingLines();
+  }
+}
+
 void XOLEDDisplayClass::setLine(int offset, char* text, bool transient, bool blink) {
   if (offset >= NB_LINES) return;
   _lines[offset].setText(text, transient, blink);   

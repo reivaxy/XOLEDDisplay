@@ -28,6 +28,7 @@ public:
   void setBlinkPeriod(unsigned int period);
   void setTransientDuration(unsigned int duration);
   void setPosition(int* pos);
+  void syncBlink(void);
 
   bool isEmpty(void);
   void cancelTransient(void);
@@ -48,6 +49,4 @@ protected:
   const char* _font = ArialMT_Plain_10;
   OLEDDISPLAY_TEXT_ALIGNMENT _alignment = TEXT_ALIGN_LEFT;
       
-  void _setText(char* text);
-  void _setTransientText(char* text);
 };

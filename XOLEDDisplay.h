@@ -18,8 +18,8 @@ public:
   void setLine(int offset, char *text, bool transient, bool blink);
   void setBlinkingLine(int offset, char *text);
   void setTransientLine(int offset, char *text);
-  void unBlinkLine(int offset);
-  void setBlinkPeriod(int offset, unsigned int period); 
+  void blinkLine(int offset, bool flag);
+  void setBlinkPeriod(int offset, unsigned int period);
   void setTransientDuration(int offset, unsigned int duration); 
   
   void setLeftIcon1(char* icon, bool blink);
@@ -38,7 +38,8 @@ protected:
   char* _leftIcon2 = NULL;  
   char* _rightIcon1= NULL;  
   char* _rightIcon2 = NULL;
-
   int _linePositions[NB_LINES][2] = {{0, 16}, {0, 26}, {0, 36}, {0, 46}};
   SSD1306* _display;
+
+  void _syncBlinkingLines(void);
 };
