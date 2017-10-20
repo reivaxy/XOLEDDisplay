@@ -16,7 +16,7 @@ XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
   }
   for(byte  i = 0; i < NB_LINES; i++) {
     _icons[i].setPosition(_iconPositions[i]);
-    _icons[i].setFont(ArialMT_Plain_16);
+    _icons[i].setFont(My_Font);
   }
 };
 

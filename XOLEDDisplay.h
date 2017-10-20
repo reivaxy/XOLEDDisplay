@@ -8,6 +8,7 @@
 #include <Arduino.h>
 #include <SSD1306.h>
 #include "XOLEDLine.h"
+#include "XOLEDIconFont.h"
 
 class XOLEDDisplayClass {
 public:

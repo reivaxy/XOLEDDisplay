@@ -16,13 +16,13 @@ void setup() {
   oledDisplay = new XOLEDDisplayClass(&display);
   oledDisplay->setTitle("BIG TITLE");
 
-  oledDisplay->setLeftIcon1('M');
-  oledDisplay->setLeftIcon2('M');
-  oledDisplay->setRightIcon1('M');
-  oledDisplay->setRightIcon2('M');
+  oledDisplay->setLeftIcon1(1);
+//  oledDisplay->setLeftIcon2('M');
+//  oledDisplay->setRightIcon1('M');
+  oledDisplay->setRightIcon2(2);
   
   
-  oledDisplay->setLine(0, "Line 0 steady !!! \"\"");
+  oledDisplay->setLine(0, "Line 0 steady ! éLp#M\"\"");
   oledDisplay->setBlinkingLine(1, "Line 1 blinking");
   oledDisplay->setLine(2, "Line 2 permanent");
   oledDisplay->setBlinkingLine(3, "Line 3 blinking fast");
