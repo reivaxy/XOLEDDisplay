@@ -17,9 +17,9 @@ void setup() {
   oledDisplay->setTitle("BIG TITLE");
 
   oledDisplay->setLeftIcon1(1);
-//  oledDisplay->setLeftIcon2('M');
-//  oledDisplay->setRightIcon1('M');
-  oledDisplay->setRightIcon2(2);
+  oledDisplay->setLeftIcon2(2);
+  oledDisplay->setRightIcon1(3);
+  oledDisplay->setRightIcon2(4, true);
   
   
   oledDisplay->setLine(0, "Line 0 steady ! éLp#M\"\"");
