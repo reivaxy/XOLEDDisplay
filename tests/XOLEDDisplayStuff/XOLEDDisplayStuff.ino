@@ -10,19 +10,18 @@ unsigned int chrono;
 unsigned int start;
 bool done = false;
 
+int  batteryIcon = 69;
 void setup() {
   Serial.begin(9600);
   // Initialise the OLED display
   oledDisplay = new XOLEDDisplayClass(&display);
   oledDisplay->setTitle("BIG TITLE");
 
-  oledDisplay->setLeftIcon1(1);
-  oledDisplay->setLeftIcon2(2);
-  oledDisplay->setRightIcon1(3);
-  oledDisplay->setRightIcon2(4, true);
+  oledDisplay->setLeftIcon2(70);
+  oledDisplay->setRightIcon1(71);
+  oledDisplay->setRightIcon2(74, true);
   
-  
-  oledDisplay->setLine(0, "Line 0 steady ! éLp#M\"\"");
+  oledDisplay->setLine(0, "Line 0 steady.");
   oledDisplay->setBlinkingLine(1, "Line 1 blinking");
   oledDisplay->setLine(2, "Line 2 permanent");
   oledDisplay->setBlinkingLine(3, "Line 3 blinking fast");
@@ -45,7 +44,9 @@ void loop() {
     oledDisplay->blinkLine(2, true);
     done = true;
   }
-
+  oledDisplay->setLeftIcon1(batteryIcon);
+  batteryIcon--;
+  if(batteryIcon < 65) batteryIcon = 69;
   oledDisplay->refresh();
-  delay(200);
+  delay(100);
 }
