@@ -1,7 +1,7 @@
 /**
  *  Class to handle displaying lines on an OLED screen, with transient and blinking capabilities
  *  Xavier Grosjean 2017
- *  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
+ *  MIT License 
  */
  
 #pragma once
@@ -24,6 +24,8 @@ public:
   void setBlinkPeriod(int offset, unsigned int period);
   void setTransientDuration(int offset, unsigned int duration); 
   void setLineFont(const char* font);
+  void setLineAlignment(int offset, OLEDDISPLAY_TEXT_ALIGNMENT alignment);
+  void setLinePosition(int offset, int x, int y);
   
   void setIcon(int offset, char icon, bool blink);
   void setIcon(int offset, char icon);  
@@ -37,7 +39,7 @@ public:
   
   void refresh(); 
   
-  static const byte NB_LINES = 4; 
+  static const byte NB_LINES = 5; 
   static const byte NB_ICONS = 4; 
 
 protected:
@@ -51,8 +53,8 @@ protected:
   bool _heartBeatHide = false;
   unsigned int _lastHeartBeat = 0;
   int _titlePositions[2] = {64, 0};
-  int _linePositions[NB_LINES][2] = {{0, 16}, {0, 26}, {0, 36}, {0, 46}};
-  int _iconPositions[NB_ICONS][2] = {{0, 0}, {12, 0}, {128-24, 0}, {128-12, 0}};
+  int _linePositions[NB_LINES][2] = {{0, 15}, {0, 25}, {0, 35}, {0, 45}, {128, 54}};
+  int _iconPositions[NB_ICONS][2] = {{0, 0}, {12, 0}, {127-24, 0}, {127-10, 0}};
   SSD1306* _display;
 
   void syncBlinking(void);

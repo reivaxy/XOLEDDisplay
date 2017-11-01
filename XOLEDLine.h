@@ -1,7 +1,7 @@
 /**
  *  Class to handle one line of text on OLED screen, with transient and blinking capabilities
  *  Xavier Grosjean 2017
- *  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
+ *  MIT License 
  */
  
 #pragma once
@@ -33,6 +33,7 @@ public:
   void setBlinkPeriod(unsigned int period);
   void setTransientDuration(unsigned int duration);
   void setPosition(int* pos);
+  void setPosition(int x, int y);
   void syncBlink(void);
 
   bool isEmpty(void);

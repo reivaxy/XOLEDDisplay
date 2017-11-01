@@ -1,7 +1,7 @@
 /**
  *  Class to handle displaying lines on an OLED screen, with transient and blinking capabilities
  *  Xavier Grosjean 2017
- *  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
+ *  MIT License 
  */
 
 #include "XOLEDDisplay.h"
@@ -17,6 +17,7 @@ XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].setPosition(_linePositions[i]);
   }
+  _lines[4].setAlignment(TEXT_ALIGN_RIGHT);
   for(byte  i = 0; i < NB_ICONS; i++) {
     _icons[i].setPosition(_iconPositions[i]);
     _icons[i].setFont(XOLEDIconFont);
@@ -70,7 +71,12 @@ void XOLEDDisplayClass::setLineFont(const char* font) {
     _lines[i].setFont(font);
   }
 }
-
+void XOLEDDisplayClass::setLineAlignment(int offset, OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
+  _lines[offset].setAlignment(alignment);
+}
+void XOLEDDisplayClass::setLinePosition(int offset, int x, int y) {
+  _lines[offset].setPosition(x, y);
+}
 /**
  *  We want all blinking element to blink in sync
  */

@@ -1,7 +1,7 @@
 /**
  *  Class to handle one line of text on OLED screen, with transient and blinking capabilities
  *  Xavier Grosjean 2017
- *  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
+ *  MIT License 
  */
 
 #include "XOLEDLine.h"
@@ -31,8 +31,11 @@ void XOLEDLineClass::setTransientDuration(unsigned int duration) {
 }
 
 void XOLEDLineClass::setPosition(int* pos) {
-  _posX = pos[0];
-  _posY = pos[1];
+  setPosition(pos[0], pos[1]);
+}
+void XOLEDLineClass::setPosition(int x, int y) {
+  _posX = x;
+  _posY = y;
 }
 
 void XOLEDLineClass::setIcon(char icon, bool blink) {
