@@ -22,6 +22,7 @@ public:
   void setTransientText(char* text);
   void setBlinkingText(char* text);
   void setText(char* text, bool transient, bool blink);
+  char* getText();
   
   void setIcon(char glyph);
   void setIcon(char glyph, bool blink);

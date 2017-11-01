@@ -68,6 +68,10 @@ void XOLEDLineClass::syncBlink(void) {
   }
 }
 
+char* XOLEDLineClass::getText() {
+  return _text;
+}
+
 void XOLEDLineClass::setText(char* text, bool transient, bool blink) {
   char **targetText = &_text;
   unsigned long now = millis();

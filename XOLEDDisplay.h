@@ -25,19 +25,10 @@ public:
   void setTransientDuration(int offset, unsigned int duration); 
   void setLineFont(const char* font);
   
-  void setIcon1(char icon, bool blink);
-  void setIcon1(char icon);
-  void setIcon2(char icon, bool blink);
-  void setIcon2(char icon);
-  void setIcon3(char icon, bool blink);
-  void setIcon3(char icon);
-  void setIcon4(char icon, bool blink);
-  void setIcon4(char icon);
-   
-  void blinkIcon1(bool blink);
-  void blinkIcon2(bool blink);
-  void blinkIcon3(bool blink);
-  void blinkIcon4(bool blink);
+  void setIcon(int offset, char icon, bool blink);
+  void setIcon(int offset, char icon);  
+  void blinkIcon(int offset, bool blink);
+  char getIconChar(int offset);
   void setIconFont(const char* font);
   
   void heartBeatOn();

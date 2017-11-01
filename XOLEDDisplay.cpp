@@ -23,46 +23,21 @@ XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
   }
 };
 
-void XOLEDDisplayClass::setIcon1(char icon, bool blink) {
-  _icons[0].setIcon(icon, blink);
+void XOLEDDisplayClass::setIcon(int offset, char icon, bool blink) {
+  _icons[offset].setIcon(icon, blink);
 }
-void XOLEDDisplayClass::setIcon1(char icon) {
-  _icons[0].setIcon(icon, false);
+void XOLEDDisplayClass::setIcon(int offset, char icon) {
+  _icons[offset].setIcon(icon, false);
 }
-void XOLEDDisplayClass::setIcon2(char icon, bool blink) {
-  _icons[1].setIcon(icon, blink);
-}
-void XOLEDDisplayClass::setIcon2(char icon) {
-  _icons[1].setIcon(icon, false);
-}
-void XOLEDDisplayClass::setIcon3(char icon, bool blink) {
-  _icons[2].setIcon(icon, blink);
-}
-void XOLEDDisplayClass::setIcon3(char icon) {
-  _icons[2].setIcon(icon, false);
-}
-void XOLEDDisplayClass::setIcon4(char icon, bool blink) {
-  _icons[3].setIcon(icon, blink);
-}
-void XOLEDDisplayClass::setIcon4(char icon) {
-  _icons[3].setIcon(icon, false);
-}
-void XOLEDDisplayClass::blinkIcon1(bool blink) {
-  _icons[0].setBlink(blink);
+void XOLEDDisplayClass::blinkIcon(int offset, bool blink) {
+  _icons[offset].setBlink(blink);
   syncBlinking();
 }
-void XOLEDDisplayClass::blinkIcon2(bool blink) {
-  _icons[1].setBlink(blink);
-  syncBlinking();
+
+char XOLEDDisplayClass::getIconChar(int offset) {
+  return _icons[offset].getText()[0];
 }
-void XOLEDDisplayClass::blinkIcon3(bool blink) {
-  _icons[2].setBlink(blink);
-  syncBlinking();
-}
-void XOLEDDisplayClass::blinkIcon4(bool blink) {
-  _icons[3].setBlink(blink);
-  syncBlinking();
-}
+
 void XOLEDDisplayClass::setIconFont(const char* font) {
   for(byte  i = 0; i < NB_ICONS; i++) {
     _icons[i].setFont(XOLEDIconFont);

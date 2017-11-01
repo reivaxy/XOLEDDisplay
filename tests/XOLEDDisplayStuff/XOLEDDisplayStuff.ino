@@ -17,9 +17,9 @@ void setup() {
   oledDisplay = new XOLEDDisplayClass(&display);
   oledDisplay->setTitle("BIG TITLE");
 
-  oledDisplay->setIcon2(70);
-  oledDisplay->setIcon3(71);
-  oledDisplay->setIcon4(72, true);
+  oledDisplay->setIcon(1, 70);
+  oledDisplay->setIcon(2, 71);
+  oledDisplay->setIcon(3, 72, true);
   
   oledDisplay->setLine(0, "Line 0 steady.");
   oledDisplay->setBlinkingLine(1, "Line 1 blinking");
@@ -44,7 +44,7 @@ void loop() {
     oledDisplay->blinkLine(2, true);
     done = true;
   }
-  oledDisplay->setIcon1(batteryIcon);
+  oledDisplay->setIcon(0, batteryIcon);
   batteryIcon--;
   if(batteryIcon < 65) batteryIcon = 69;
   oledDisplay->refresh();
