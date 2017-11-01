@@ -19,7 +19,7 @@ XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
   }
   for(byte  i = 0; i < NB_ICONS; i++) {
     _icons[i].setPosition(_iconPositions[i]);
-    _icons[i].setFont(My_Font);
+    _icons[i].setFont(XOLEDIconFont);
   }
 };
 
@@ -49,19 +49,23 @@ void XOLEDDisplayClass::setIcon4(char icon) {
 }
 void XOLEDDisplayClass::blinkIcon1(bool blink) {
   _icons[0].setBlink(blink);
+  syncBlinking();
 }
 void XOLEDDisplayClass::blinkIcon2(bool blink) {
   _icons[1].setBlink(blink);
+  syncBlinking();
 }
 void XOLEDDisplayClass::blinkIcon3(bool blink) {
   _icons[2].setBlink(blink);
+  syncBlinking();
 }
 void XOLEDDisplayClass::blinkIcon4(bool blink) {
   _icons[3].setBlink(blink);
+  syncBlinking();
 }
 void XOLEDDisplayClass::setIconFont(const char* font) {
   for(byte  i = 0; i < NB_ICONS; i++) {
-    _icons[i].setFont(My_Font);
+    _icons[i].setFont(XOLEDIconFont);
   }
 }
 
@@ -88,7 +92,7 @@ void XOLEDDisplayClass::setBlinkingLine(int offset, char* text) {
 }
 void XOLEDDisplayClass::setLineFont(const char* font) {
   for(byte  i = 0; i < NB_LINES; i++) {
-    _lines[i].setFont(My_Font);
+    _lines[i].setFont(font);
   }
 }
 
@@ -124,8 +128,31 @@ void XOLEDDisplayClass::setTransientDuration(int offset, unsigned int duration) 
   _lines[offset].setTransientDuration(duration);   
 }
 
+void XOLEDDisplayClass::heartBeatOn() {
+  _heartBeatOn = true;
+}
+void XOLEDDisplayClass::heartBeatOff() {
+  _heartBeatOn = false;
+}
+void XOLEDDisplayClass::setHeartBeatposition(int x, int y) {
+  _heartBeatX = x;
+  _heartBeatY = y;
+}
+  
 void XOLEDDisplayClass::refresh(void) {
   _display->clear();
+  if (_heartBeatOn) {
+    unsigned long now = millis();
+    if (now > _lastHeartBeat + 500) {
+      _lastHeartBeat = now;
+      _heartBeatHide = !_heartBeatHide;
+    }
+  } else {
+    _heartBeatHide = true;
+  }
+  if (!_heartBeatHide) {
+    _display->setPixel(_heartBeatX, _heartBeatY);
+  }
   _title.refresh(_display);    
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].refresh(_display);

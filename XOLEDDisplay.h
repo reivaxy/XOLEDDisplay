@@ -40,6 +40,10 @@ public:
   void blinkIcon4(bool blink);
   void setIconFont(const char* font);
   
+  void heartBeatOn();
+  void heartBeatOff();
+  void setHeartBeatposition(int x, int y);
+  
   void refresh(); 
   
   static const byte NB_LINES = 4; 
@@ -50,6 +54,11 @@ protected:
   XOLEDLineClass _lines[NB_LINES];
   XOLEDLineClass _icons[NB_LINES];
  
+  int _heartBeatX = 0;
+  int _heartBeatY = 0;
+  bool _heartBeatOn = true;
+  bool _heartBeatHide = false;
+  unsigned int _lastHeartBeat = 0;
   int _titlePositions[2] = {64, 0};
   int _linePositions[NB_LINES][2] = {{0, 16}, {0, 26}, {0, 36}, {0, 46}};
   int _iconPositions[NB_ICONS][2] = {{0, 0}, {12, 0}, {128-24, 0}, {128-12, 0}};
