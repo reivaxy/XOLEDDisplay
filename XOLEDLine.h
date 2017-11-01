@@ -28,6 +28,7 @@ public:
 
   void setBlink(bool flag);
   void setFont(const char* font);
+  void setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment);
   void setBlinkPeriod(unsigned int period);
   void setTransientDuration(unsigned int duration);
   void setPosition(int* pos);

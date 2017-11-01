@@ -10,44 +10,66 @@ XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
   _display = display;
   _display->init();
   _display->flipScreenVertically();
-  _title[0] = 0;
+  _title.setFont(ArialMT_Plain_16);
+  _title.setPosition(_titlePositions);
+  _title.setAlignment(TEXT_ALIGN_CENTER);
+    
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].setPosition(_linePositions[i]);
   }
-  for(byte  i = 0; i < NB_LINES; i++) {
+  for(byte  i = 0; i < NB_ICONS; i++) {
     _icons[i].setPosition(_iconPositions[i]);
     _icons[i].setFont(My_Font);
   }
 };
 
-void XOLEDDisplayClass::setLeftIcon1(char icon, bool blink) {
+void XOLEDDisplayClass::setIcon1(char icon, bool blink) {
   _icons[0].setIcon(icon, blink);
 }
-void XOLEDDisplayClass::setLeftIcon1(char icon) {
+void XOLEDDisplayClass::setIcon1(char icon) {
   _icons[0].setIcon(icon, false);
 }
-void XOLEDDisplayClass::setLeftIcon2(char icon, bool blink) {
+void XOLEDDisplayClass::setIcon2(char icon, bool blink) {
   _icons[1].setIcon(icon, blink);
 }
-void XOLEDDisplayClass::setLeftIcon2(char icon) {
+void XOLEDDisplayClass::setIcon2(char icon) {
   _icons[1].setIcon(icon, false);
 }
-void XOLEDDisplayClass::setRightIcon1(char icon, bool blink) {
+void XOLEDDisplayClass::setIcon3(char icon, bool blink) {
   _icons[2].setIcon(icon, blink);
 }
-void XOLEDDisplayClass::setRightIcon1(char icon) {
+void XOLEDDisplayClass::setIcon3(char icon) {
   _icons[2].setIcon(icon, false);
 }
-void XOLEDDisplayClass::setRightIcon2(char icon, bool blink) {
+void XOLEDDisplayClass::setIcon4(char icon, bool blink) {
   _icons[3].setIcon(icon, blink);
 }
-void XOLEDDisplayClass::setRightIcon2(char icon) {
+void XOLEDDisplayClass::setIcon4(char icon) {
   _icons[3].setIcon(icon, false);
+}
+void XOLEDDisplayClass::blinkIcon1(bool blink) {
+  _icons[0].setBlink(blink);
+}
+void XOLEDDisplayClass::blinkIcon2(bool blink) {
+  _icons[1].setBlink(blink);
+}
+void XOLEDDisplayClass::blinkIcon3(bool blink) {
+  _icons[2].setBlink(blink);
+}
+void XOLEDDisplayClass::blinkIcon4(bool blink) {
+  _icons[3].setBlink(blink);
+}
+void XOLEDDisplayClass::setIconFont(const char* font) {
+  for(byte  i = 0; i < NB_ICONS; i++) {
+    _icons[i].setFont(My_Font);
+  }
 }
 
 void XOLEDDisplayClass::setTitle(char* title) {
-  strncpy(_title, title, MAX_TITLE_LENGTH);
-  _title[MAX_TITLE_LENGTH] = 0;
+  _title.setText(title);
+}
+void XOLEDDisplayClass::setTitleFont(const char* font) {
+
 }  
 
 void XOLEDDisplayClass::setLine(int offset, char* text) {
@@ -62,19 +84,30 @@ void XOLEDDisplayClass::setBlinkingLine(int offset, char* text) {
   if (offset >= NB_LINES) return;
   _lines[offset].setBlinkingText(text);
   // We probably want all blinking lines (with same period) to be in sync
-  _syncBlinkingLines();
+  syncBlinking();
+}
+void XOLEDDisplayClass::setLineFont(const char* font) {
+  for(byte  i = 0; i < NB_LINES; i++) {
+    _lines[i].setFont(My_Font);
+  }
 }
 
-void XOLEDDisplayClass::_syncBlinkingLines() {
-  for(byte i = 0; i < NB_LINES; i++) {
-    _lines[i].syncBlink();
+/**
+ *  We want all blinking element to blink in sync
+ */
+void XOLEDDisplayClass::syncBlinking() {
+  for(byte l = 0; l < NB_LINES; l++) {
+    _lines[l].syncBlink();
+  }
+  for(byte i = 0; i < NB_ICONS; i++) {
+    _icons[i].syncBlink();
   }
 }
 void XOLEDDisplayClass::blinkLine(int offset, bool flag) {
   if (offset >= NB_LINES) return;
   _lines[offset].setBlink(flag);
   if (flag) {
-    _syncBlinkingLines();
+    syncBlinking();
   }
 }
 
@@ -93,10 +126,7 @@ void XOLEDDisplayClass::setTransientDuration(int offset, unsigned int duration) 
 
 void XOLEDDisplayClass::refresh(void) {
   _display->clear();
-  _display->setFont(ArialMT_Plain_16);
-  _display->setTextAlignment(TEXT_ALIGN_CENTER);
-  _display->drawString(64, 0, _title);  
-  _display->setTextAlignment(TEXT_ALIGN_LEFT);
+  _title.refresh(_display);    
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].refresh(_display);
   }

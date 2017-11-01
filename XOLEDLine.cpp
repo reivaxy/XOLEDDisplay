@@ -45,6 +45,9 @@ void XOLEDLineClass::setIcon(char icon, bool blink) {
 void XOLEDLineClass::setIcon(char icon) {
   setIcon(icon, false);
 }
+void XOLEDLineClass::setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
+  _alignment = alignment;
+}
 
 void XOLEDLineClass::setFont(const char* font) {
   _font = font;
@@ -57,6 +60,7 @@ void XOLEDLineClass::setBlink(bool flag) {
     _lastBlinkDate = 0;
   }
 }
+
 void XOLEDLineClass::syncBlink(void) {
   if(_lastBlinkDate != 0) {
     _lastBlinkDate = millis();;
