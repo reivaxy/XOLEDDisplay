@@ -13,17 +13,17 @@
 class XOLEDDisplayClass {
 public:
   XOLEDDisplayClass(SSD1306* display);
-  void setTitle(char *title);
+  void setTitle(const char *title);
   void setTitleFont(const char* font);
 
-  void setLine(int offset, char *text);
-  void setLine(int offset, char *text, bool transient, bool blink);
-  void setBlinkingLine(int offset, char *text);
-  void setTransientLine(int offset, char *text);
+  void setLine(int offset, const char *text);
+  void setLine(int offset, const char *text, bool transient, bool blink);
+  void setBlinkingLine(int offset, const char *text);
+  void setTransientLine(int offset, const char *text);
   void blinkLine(int offset, bool flag);
   void setBlinkPeriod(int offset, unsigned int period);
   void setTransientDuration(int offset, unsigned int duration); 
-  void setLineFont(const char* font);
+  void setLineFont(const unsigned char* font);
   void setLineAlignment(int offset, OLEDDISPLAY_TEXT_ALIGNMENT alignment);
   void setLinePosition(int offset, int x, int y);
   

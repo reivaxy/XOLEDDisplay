@@ -45,28 +45,28 @@ void XOLEDDisplayClass::setIconFont(const char* font) {
   }
 }
 
-void XOLEDDisplayClass::setTitle(char* title) {
+void XOLEDDisplayClass::setTitle(const char* title) {
   _title.setText(title);
 }
 void XOLEDDisplayClass::setTitleFont(const char* font) {
 
 }  
 
-void XOLEDDisplayClass::setLine(int offset, char* text) {
+void XOLEDDisplayClass::setLine(int offset, const char* text) {
   if (offset >= NB_LINES) return;
   _lines[offset].setText(text);   
 }
-void XOLEDDisplayClass::setTransientLine(int offset, char* text) {
+void XOLEDDisplayClass::setTransientLine(int offset, const char* text) {
   if (offset >= NB_LINES) return;
   _lines[offset].setTransientText(text);   
 }
-void XOLEDDisplayClass::setBlinkingLine(int offset, char* text) {
+void XOLEDDisplayClass::setBlinkingLine(int offset, const char* text) {
   if (offset >= NB_LINES) return;
   _lines[offset].setBlinkingText(text);
   // We probably want all blinking lines (with same period) to be in sync
   syncBlinking();
 }
-void XOLEDDisplayClass::setLineFont(const char* font) {
+void XOLEDDisplayClass::setLineFont(const unsigned char* font) {
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].setFont(font);
   }
@@ -96,7 +96,7 @@ void XOLEDDisplayClass::blinkLine(int offset, bool flag) {
   }
 }
 
-void XOLEDDisplayClass::setLine(int offset, char* text, bool transient, bool blink) {
+void XOLEDDisplayClass::setLine(int offset, const char* text, bool transient, bool blink) {
   if (offset >= NB_LINES) return;
   _lines[offset].setText(text, transient, blink);   
 }

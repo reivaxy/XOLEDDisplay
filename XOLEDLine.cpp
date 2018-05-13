@@ -9,7 +9,7 @@
 XOLEDLineClass::XOLEDLineClass() {
 }
 
-void XOLEDLineClass::setText(char* text) {
+void XOLEDLineClass::setText(const char* text) {
   setText(text, false, false);
 }
 
@@ -17,10 +17,10 @@ void XOLEDLineClass::setText(char* text) {
  * This call preserves the blinking property of the line
  *
  */
-void XOLEDLineClass::setTransientText(char* text) {
+void XOLEDLineClass::setTransientText(const char* text) {
   setText(text, true, _lastBlinkDate != 0);
 }
-void XOLEDLineClass::setBlinkingText(char* text) {
+void XOLEDLineClass::setBlinkingText(const char* text) {
   setText(text, false, true);
 }
 void XOLEDLineClass::setBlinkPeriod(unsigned int period) {
@@ -52,7 +52,7 @@ void XOLEDLineClass::setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
   _alignment = alignment;
 }
 
-void XOLEDLineClass::setFont(const char* font) {
+void XOLEDLineClass::setFont(const unsigned char* font) {
   _font = font;
 }
 
@@ -75,7 +75,7 @@ char* XOLEDLineClass::getText() {
   return _text;
 }
 
-void XOLEDLineClass::setText(char* text, bool transient, bool blink) {
+void XOLEDLineClass::setText(const char* text, bool transient, bool blink) {
   char **targetText = &_text;
   unsigned long now = millis();
 

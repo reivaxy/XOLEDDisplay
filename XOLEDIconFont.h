@@ -1,5 +1,5 @@
 // Font generated or edited with the glyphEditor
-const char XOLEDIconFont[] PROGMEM = {
+const unsigned char XOLEDIconFont[] PROGMEM = {
 0x0A, // Width: 10
 0x0D, // Height: 13
 0x41, // First char: 65

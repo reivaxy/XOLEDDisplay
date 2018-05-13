@@ -18,17 +18,17 @@
 class XOLEDLineClass {
 public:
   XOLEDLineClass();
-  void setText(char* text);
-  void setTransientText(char* text);
-  void setBlinkingText(char* text);
-  void setText(char* text, bool transient, bool blink);
+  void setText(const char* text);
+  void setText(const char* text, bool transient, bool blink);
+  void setTransientText(const char* text);
+  void setBlinkingText(const char* text);
   char* getText();
   
   void setIcon(char glyph);
   void setIcon(char glyph, bool blink);
 
   void setBlink(bool flag);
-  void setFont(const char* font);
+  void setFont(const unsigned char* font);
   void setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment);
   void setBlinkPeriod(unsigned int period);
   void setTransientDuration(unsigned int duration);
@@ -52,7 +52,7 @@ protected:
   unsigned long _transientDuration = 5000; // 5 seconds
   int _posX = 0;
   int _posY = 0;
-  const char* _font = ArialMT_Plain_10;
+  const uint8_t* _font = ArialMT_Plain_10;
   OLEDDISPLAY_TEXT_ALIGNMENT _alignment = TEXT_ALIGN_LEFT;
       
 };
