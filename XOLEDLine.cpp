@@ -72,6 +72,9 @@ void XOLEDLineClass::syncBlink(void) {
 }
 
 char* XOLEDLineClass::getText() {
+  if(_text == NULL) {
+    return "";
+  }
   return _text;
 }
 
