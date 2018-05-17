@@ -13,6 +13,9 @@
 class XOLEDDisplayClass {
 public:
   XOLEDDisplayClass(SSD1306* display);
+  XOLEDDisplayClass(int addr, int sda, int scl);
+  
+  SSD1306* getDisplay();
   void setTitle(const char *title);
   void setTitleFont(const char* font);
 
@@ -43,6 +46,7 @@ public:
   static const byte NB_ICONS = 4; 
 
 protected:
+  void _init(SSD1306* display);
   XOLEDLineClass _title;
   XOLEDLineClass _lines[NB_LINES];
   XOLEDLineClass _icons[NB_LINES];

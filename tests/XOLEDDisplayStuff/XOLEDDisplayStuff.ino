@@ -4,17 +4,17 @@
 #include "XOLEDDisplay.h"
 
 XOLEDDisplayClass *oledDisplay;
-SSD1306 display(0x3C, D5, D6);
+//SSD1306 display(0x3C, D5, D6);
 
 unsigned int chrono;
 unsigned int start;
 bool done = false;
 
-int  batteryIcon = 69;
+int  batteryIcon = 70;
 void setup() {
   Serial.begin(9600);
   // Initialise the OLED display
-  oledDisplay = new XOLEDDisplayClass(&display);
+  oledDisplay = new XOLEDDisplayClass(0x3C, D5, D6);
   oledDisplay->setTitle("BIG TITLE");
 
   oledDisplay->setIcon(1, 70);
@@ -46,7 +46,7 @@ void loop() {
   }
   oledDisplay->setIcon(0, batteryIcon);
   batteryIcon--;
-  if(batteryIcon < 65) batteryIcon = 69;
+  if(batteryIcon < 66) batteryIcon = 70;
   oledDisplay->refresh();
   delay(100);
 }

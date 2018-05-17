@@ -6,7 +6,20 @@
 
 #include "XOLEDDisplay.h"
 
+XOLEDDisplayClass::XOLEDDisplayClass(int addr, int sda, int scl) {
+  SSD1306* display = new SSD1306(addr, sda, scl);
+  _init(display);
+}
+
 XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
+  _init(display);
+}
+
+SSD1306* XOLEDDisplayClass::getDisplay() {
+  return _display;
+}
+
+void XOLEDDisplayClass::_init(SSD1306* display) {
   _display = display;
   _display->init();
   _display->flipScreenVertically();
