@@ -6,9 +6,13 @@
 XOLEDDisplayClass *oledDisplay;
 //SSD1306 display(0x3C, D5, D6);
 
-unsigned int chrono;
+unsigned int chrono8 = 0;
+unsigned int chrono2 = 0;
 unsigned int start;
 bool done = false;
+char message[] = "A!BC'D'E.F,GHIJ_K\"L\"MNOP QRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+char* firstChar = message;
+char title[8];
 
 int  batteryIcon = 70;
 void setup() {
@@ -27,17 +31,26 @@ void setup() {
   oledDisplay->setBlinkingLine(3, "Line 3 blinking fast");
   oledDisplay->setBlinkPeriod(3, 200);
   start = millis();
-  chrono = start;
-
+  chrono8 = start;
+  chrono2 = start;
 }
 
 void loop() {
   unsigned int now = millis();
   // Every 8 seconds, display transient messages on lines 2 and 3
-  if (now > chrono + 8000) {
+  if (now > chrono8 + 8000) {
     oledDisplay->setTransientLine(2, "Line 2 transient");
     oledDisplay->setTransientLine(3, "Truncated blinking transient line");
-    chrono = now;
+    chrono8 = now;
+  }
+    
+  if (now > chrono2 + 2000) {
+    strncpy(title, firstChar, 7);
+    title[7] = 0;
+    firstChar += 7;
+    if(firstChar > message + strlen(message)) firstChar = message;
+    oledDisplay->setTitle((const char *)title);
+    chrono2 = now;
   }
   // 5.5 seconds after begining, set line 2 as blinking. Blinking Lines should be in sync (except fast blinking one)
   if (!done && now > start + 5500) {
