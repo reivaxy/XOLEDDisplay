@@ -9,6 +9,7 @@
 #include <SSD1306.h>
 #include "XOLEDLine.h"
 #include "XOLEDIconFont.h"
+#include "XOLEDFont.h"
 
 class XOLEDDisplayClass {
 public:

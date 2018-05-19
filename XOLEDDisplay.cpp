@@ -23,7 +23,7 @@ void XOLEDDisplayClass::_init(SSD1306* display) {
   _display = display;
   _display->init();
   _display->flipScreenVertically();
-  _title.setFont(ArialMT_Plain_16);
+  _title.setFont(ArialMT_Plain_13);
   _title.setPosition(_titlePositions);
   _title.setAlignment(TEXT_ALIGN_CENTER);
     
