@@ -30,7 +30,6 @@ void XOLEDDisplayClass::_init(SSD1306* display) {
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].setPosition(_linePositions[i]);
   }
-  _lines[4].setAlignment(TEXT_ALIGN_RIGHT);
   for(byte  i = 0; i < NB_ICONS; i++) {
     _icons[i].setPosition(_iconPositions[i]);
     _icons[i].setFont(XOLEDIconFont);

@@ -50,6 +50,17 @@ void XOLEDLineClass::setIcon(char icon) {
 }
 void XOLEDLineClass::setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
   _alignment = alignment;
+  switch(alignment) {
+    case TEXT_ALIGN_RIGHT:  
+      _posX = 128;
+      break;
+    case TEXT_ALIGN_LEFT:  
+      _posX = 0;
+      break;
+    case TEXT_ALIGN_CENTER:  
+      _posX = 64;
+      break;
+  }
 }
 
 void XOLEDLineClass::setFont(const unsigned char* font) {

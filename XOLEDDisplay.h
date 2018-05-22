@@ -58,7 +58,7 @@ protected:
   bool _heartBeatHide = false;
   unsigned int _lastHeartBeat = 0;
   int _titlePositions[2] = {64, 0};
-  int _linePositions[NB_LINES][2] = {{0, 15}, {0, 25}, {0, 35}, {0, 45}, {128, 54}};
+  int _linePositions[NB_LINES][2] = {{0, 15}, {0, 25}, {0, 35}, {0, 45}, {0, 54}};
   int _iconPositions[NB_ICONS][2] = {{0, 0}, {12, 0}, {127-24, 0}, {127-10, 0}};
   SSD1306* _display;
 
