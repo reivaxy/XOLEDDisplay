@@ -40,7 +40,7 @@ public:
   void cancelTransient(void);
   void refresh(SSD1306* display);
   
-  static const byte MAX_LINE_LENGTH = 25;  
+  static const unsigned int MAX_LINE_LENGTH = 25;
   
 protected:
   char* _text = NULL;
