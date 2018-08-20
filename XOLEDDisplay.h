@@ -13,8 +13,8 @@
 
 class XOLEDDisplayClass {
 public:
-  XOLEDDisplayClass(SSD1306* display);
-  XOLEDDisplayClass(int addr, int sda, int scl);
+  XOLEDDisplayClass(SSD1306* display, bool flipScreen = true, uint8_t brightness = 100);
+  XOLEDDisplayClass(int addr, int sda, int scl, bool flipScreen = true, uint8_t brightness = 100);
   
   SSD1306* getDisplay();
   void setTitle(const char *title);
@@ -47,7 +47,7 @@ public:
   static const byte NB_ICONS = 4; 
 
 protected:
-  void _init(SSD1306* display);
+  void _init(SSD1306* display, bool flipScreen = true, uint8_t brightness = 100);
   XOLEDLineClass _title;
   XOLEDLineClass _lines[NB_LINES];
   XOLEDLineClass _icons[NB_LINES];

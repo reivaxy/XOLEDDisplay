@@ -6,23 +6,26 @@
 
 #include "XOLEDDisplay.h"
 
-XOLEDDisplayClass::XOLEDDisplayClass(int addr, int sda, int scl) {
+XOLEDDisplayClass::XOLEDDisplayClass(int addr, int sda, int scl, bool flipScreen, uint8_t brightness) {
   SSD1306* display = new SSD1306(addr, sda, scl);
-  _init(display);
+  _init(display, flipScreen, brightness);
 }
 
-XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display) {
-  _init(display);
+XOLEDDisplayClass::XOLEDDisplayClass(SSD1306* display, bool flipScreen, uint8_t brightness) {
+  _init(display, flipScreen, brightness);
 }
 
 SSD1306* XOLEDDisplayClass::getDisplay() {
   return _display;
 }
 
-void XOLEDDisplayClass::_init(SSD1306* display) {
+void XOLEDDisplayClass::_init(SSD1306* display, bool flipScreen, uint8_t brightness) {
   _display = display;
   _display->init();
-  _display->flipScreenVertically();
+  if(flipScreen) {
+    _display->flipScreenVertically();
+  }
+  _display->setBrightness(brightness);
   _title.setFont(ArialMT_Plain_13);
   _title.setPosition(_titlePositions);
   _title.setAlignment(TEXT_ALIGN_CENTER);
