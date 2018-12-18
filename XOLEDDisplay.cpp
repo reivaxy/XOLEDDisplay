@@ -86,6 +86,10 @@ void XOLEDDisplayClass::setLineFont(const unsigned char* font) {
     _lines[i].setFont(font);
   }
 }
+void XOLEDDisplayClass::setLineFont(int offset, const unsigned char* font) {
+  if (offset >= NB_LINES) return;
+  _lines[offset].setFont(font);
+}
 void XOLEDDisplayClass::setLineAlignment(int offset, OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
   _lines[offset].setAlignment(alignment);
 }
