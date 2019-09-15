@@ -26,18 +26,23 @@ void XOLEDDisplayClass::_init(SSD1306* display, bool flipScreen, uint8_t brightn
     _display->flipScreenVertically();
   }
   _display->setBrightness(brightness);
+  resetLinesAndIcons();
+};
+
+void XOLEDDisplayClass::resetLinesAndIcons() {
   _title.setFont(ArialMT_Plain_13);
   _title.setPosition(_titlePositions);
   _title.setAlignment(TEXT_ALIGN_CENTER);
     
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].setPosition(_linePositions[i]);
+    _lines[i].setFont(ArialMT_Plain_10);
   }
   for(byte  i = 0; i < NB_ICONS; i++) {
     _icons[i].setPosition(_iconPositions[i]);
     _icons[i].setFont(XOLEDIconFont);
   }
-};
+}
 
 void XOLEDDisplayClass::setIcon(int offset, char icon, bool blink) {
   _icons[offset].setIcon(icon, blink);
@@ -81,15 +86,23 @@ void XOLEDDisplayClass::setBlinkingLine(int offset, const char* text) {
   // We probably want all blinking lines (with same period) to be in sync
   syncBlinking();
 }
-void XOLEDDisplayClass::setLineFont(const unsigned char* font) {
+void XOLEDDisplayClass::setLineFont(const uint8_t* font) {
   for(byte  i = 0; i < NB_LINES; i++) {
     _lines[i].setFont(font);
   }
 }
-void XOLEDDisplayClass::setLineFont(int offset, const unsigned char* font) {
+void XOLEDDisplayClass::setLineFont(int offset, const uint8_t* font) {
   if (offset >= NB_LINES) return;
   _lines[offset].setFont(font);
 }
+
+void XOLEDDisplayClass::resetLineFont(int offset) {
+  setLineFont(offset, ArialMT_Plain_10);
+}
+void XOLEDDisplayClass::resetLineFont() {
+  setLineFont(ArialMT_Plain_10);
+}
+
 void XOLEDDisplayClass::setLineAlignment(int offset, OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
   _lines[offset].setAlignment(alignment);
 }

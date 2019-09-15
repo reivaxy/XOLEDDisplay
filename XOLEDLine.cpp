@@ -63,7 +63,7 @@ void XOLEDLineClass::setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
   }
 }
 
-void XOLEDLineClass::setFont(const unsigned char* font) {
+void XOLEDLineClass::setFont(const uint8_t* font) {
   _font = font;
 }
 

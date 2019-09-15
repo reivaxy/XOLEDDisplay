@@ -28,7 +28,7 @@ public:
   void setIcon(char glyph, bool blink);
 
   void setBlink(bool flag);
-  void setFont(const unsigned char* font);
+  void setFont(const uint8_t* font);
   void setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment);
   void setBlinkPeriod(unsigned int period);
   void setTransientDuration(unsigned int duration);

@@ -27,8 +27,11 @@ public:
   void blinkLine(int offset, bool flag);
   void setBlinkPeriod(int offset, unsigned int period);
   void setTransientDuration(int offset, unsigned int duration); 
-  void setLineFont(const unsigned char* font);
-  void setLineFont(int offset, const unsigned char* font);
+  void setLineFont(const uint8_t* font);
+  void setLineFont(int offset, const uint8_t* font);
+  void resetLineFont(int offset);
+  void resetLineFont();
+  void resetLinesAndIcons();
   void setLineAlignment(int offset, OLEDDISPLAY_TEXT_ALIGNMENT alignment);
   void setLinePosition(int offset, int x, int y);
   
