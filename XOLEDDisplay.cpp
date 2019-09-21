@@ -35,6 +35,7 @@ void XOLEDDisplayClass::resetLinesAndIcons() {
   _title.setAlignment(TEXT_ALIGN_CENTER);
     
   for(byte  i = 0; i < NB_LINES; i++) {
+    _lines[i].setAlignment(TEXT_ALIGN_LEFT);
     _lines[i].setPosition(_linePositions[i]);
     _lines[i].setFont(ArialMT_Plain_10);
   }
