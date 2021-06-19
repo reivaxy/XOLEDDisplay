@@ -47,8 +47,8 @@ public:
   
   void refresh(); 
   
-  static const byte NB_LINES = 5; 
-  static const byte NB_ICONS = 4; 
+  static const unsigned char NB_LINES = 5; 
+  static const unsigned char NB_ICONS = 4; 
 
 protected:
   void _init(SSD1306* display, bool flipScreen = true, uint8_t brightness = 100);

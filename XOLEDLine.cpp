@@ -111,7 +111,7 @@ void XOLEDLineClass::setText(const char* text, bool transient, bool blink) {
     free(*targetText);
     *targetText = NULL;
   }
-  int len = min(strlen(text), MAX_LINE_LENGTH);
+  unsigned int len = min(strlen(text), (size_t)MAX_LINE_LENGTH);   // Not casting the constant make an error in build_type = debug in platformio
   *targetText = (char*)malloc(len + 1) ;
   strncpy(*targetText, text, len);
   (*targetText)[len] = 0;
