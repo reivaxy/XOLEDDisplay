@@ -58,6 +58,7 @@ void XOLEDLineClass::setAlignment(OLEDDISPLAY_TEXT_ALIGNMENT alignment) {
       _posX = 0;
       break;
     case TEXT_ALIGN_CENTER:  
+    case TEXT_ALIGN_CENTER_BOTH:  
       _posX = 64;
       break;
   }
